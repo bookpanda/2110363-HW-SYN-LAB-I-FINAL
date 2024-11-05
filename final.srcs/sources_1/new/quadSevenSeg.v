@@ -21,16 +21,16 @@
 
 
 module quadSevenSeg(
-    output reg [6:0] seg,
+    output [6:0] seg,
     output dp,
     output an0,
     output an1,
     output an2,
     output an3,
-    input [7:0] num0, // most right
-    input [7:0] num1,
-    input [7:0] num2,
-    input [7:0] num3, // most left
+    input [3:0] num0, // most right
+    input [3:0] num1,
+    input [3:0] num2,
+    input [3:0] num3, // most left
     input clk
 );
     reg [1:0] ns; // next stage
@@ -39,7 +39,9 @@ module quadSevenSeg(
     
     reg [3:0] hexIn;
     wire [6:0] segments;
+    assign seg = segments;
     
+    hexTo7Segment segDecode(segments,hexIn);
     assign dp=0; // dot point corresponse with activated an
     assign {an3,an2,an1,an0}=~dispEn;
 
@@ -61,10 +63,10 @@ module quadSevenSeg(
     
     always @(ps)
         case(ps)
-            2'b00: seg=num0;
-            2'b01: seg=num1;
-            2'b10: seg=num2;
-            2'b11: seg=num3;
+            2'b00: hexIn=num0;
+            2'b01: hexIn=num1;
+            2'b10: hexIn=num2;
+            2'b11: hexIn=num3;
         endcase
     
 endmodule

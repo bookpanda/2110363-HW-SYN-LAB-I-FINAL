@@ -28,7 +28,6 @@ module uartRx(
 );
     reg lastBit;
     reg receiving = 0;
-//    reg [7:0] count;
     integer count = 0;
     
     always @(posedge clk) begin

@@ -21,8 +21,8 @@
 
 
 module baudRate(
-    input clk,
-    output reg baudClk
+    output reg baudClk,
+    input clk
 );
     integer counter;
     always @(posedge clk) begin
