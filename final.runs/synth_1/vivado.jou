@@ -3,22 +3,22 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Tue Nov  5 22:55:58 2024
-# Process ID: 15784
-# Current directory: C:/Users/margi/Code/school/HW-SYN-LAB-FINAL/final.runs/synth_1
+# Start of session at: Tue Dec  3 18:33:38 2024
+# Process ID: 3920
+# Current directory: C:/Users/Administrator/Desktop/2110363-HW-SYN-LAB-I-FINAL/final.runs/synth_1
 # Command line: vivado.exe -log system.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system.tcl
-# Log file: C:/Users/margi/Code/school/HW-SYN-LAB-FINAL/final.runs/synth_1/system.vds
-# Journal file: C:/Users/margi/Code/school/HW-SYN-LAB-FINAL/final.runs/synth_1\vivado.jou
-# Running On        :LAPTOP-293MO244
+# Log file: C:/Users/Administrator/Desktop/2110363-HW-SYN-LAB-I-FINAL/final.runs/synth_1/system.vds
+# Journal file: C:/Users/Administrator/Desktop/2110363-HW-SYN-LAB-I-FINAL/final.runs/synth_1\vivado.jou
+# Running On        :DESKTOP-S7QFKVR
 # Platform          :Windows Server 2016 or Windows 10
-# Operating System  :22631
-# Processor Detail  :AMD Ryzen 7 4800H with Radeon Graphics         
-# CPU Frequency     :2894 MHz
-# CPU Physical cores:8
-# CPU Logical cores :16
-# Host memory       :16505 MB
-# Swap memory       :11811 MB
-# Total Virtual     :28317 MB
-# Available Virtual :13716 MB
+# Operating System  :26100
+# Processor Detail  :AMD Ryzen 5 3550H with Radeon Vega Mobile Gfx  
+# CPU Frequency     :2096 MHz
+# CPU Physical cores:4
+# CPU Logical cores :8
+# Host memory       :14899 MB
+# Swap memory       :939 MB
+# Total Virtual     :15839 MB
+# Available Virtual :9656 MB
 #-----------------------------------------------------------
 source system.tcl -notrace

@@ -27,8 +27,9 @@ module system(
     output dp,
     output [3:0] an,
     input [7:0] sw,
-    input btnC,
-    input btnR,
+    input btnC, btnR, btnU,btnL,
+    output wire Hsync, Vsync,
+    output wire [11:0] rgb, 
     input clk
 );
     wire baudClk;
@@ -36,14 +37,31 @@ module system(
     
     reg [7:0] lastInput;
     reg updateFromUART = 1; // Flag to allow UART update by default
-    
+    reg last_rec,last_btnC,en;
     // keyboard input
     wire [7:0] keyboardInput;
-    wire received;
+    wire sent,received;
+    reg [7:0] data_in;
+    
     uartRx rx(baudClk, RsRx, received, keyboardInput);
+    uartTx tx(baudClk, data_in, en, sent, RsTx);
+    
+    always @(posedge baudClk) begin
+        if (en) en = 0;
+        if (~last_rec & received) begin
+            data_in = keyboardInput;
+            if (data_in <= 8'h7A && data_in >= 8'h41) en = 1;
+        end
+        if (~last_btnC & btnC)begin
+            data_in = lastInput;
+            if (data_in <= 8'h7A && data_in >= 8'h41) en = 1;
+        end
+        last_rec = received;
+        last_btnC = btnC;
+    end
     
     always @(posedge clk) begin
-        // reset button
+       // reset button
         if(btnR) begin
             lastInput <= 0;
             updateFromUART <= 1;
@@ -70,5 +88,8 @@ module system(
         receivedLog[7:4],    // left
         baudClk);
     
+    ascii_test(clk, btnR, Hsync,Vsync,rgb);
+
     
+
 endmodule
