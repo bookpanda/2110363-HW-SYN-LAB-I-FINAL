@@ -50,11 +50,11 @@ module system(
         if (en) en = 0;
         if (~last_rec & received) begin
             data_in = keyboardInput;
-            if ((data_in <= 8'h7A && data_in >= 8'h30)|| data_in == 8'h08) en = 1;
+            if ((data_in <= 8'h7A && data_in >= 8'h30)|| data_in == 8'h7F || data_in == 8'h0D) en = 1;
         end
         if (~last_btnC & btnC)begin
             data_in = lastInput;
-            if ((data_in <= 8'h7A && data_in >= 8'h30)|| data_in == 8'h08) en = 1;
+            if ((data_in <= 8'h7A && data_in >= 8'h30)|| data_in == 8'h7F || data_in == 8'h0D) en = 1;
         end
         last_rec = received;
         last_btnC = btnC;

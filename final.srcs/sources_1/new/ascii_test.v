@@ -35,23 +35,29 @@ module ascii_test(
     reg [1:0] currentline;
     always@(posedge clk) begin
         if ( ~last_ena & ena) begin
-                readAscii[currentpos+8*currentline] = data_in[6:0];
-                if(data_in == 7'h08)begin
+                if((!(currentpos==7 &&currentline == 2)||data_in==7'h7F)&& !(data_in==7'h0D))readAscii[currentpos+8*currentline] = data_in[6:0];
+                if(data_in == 7'h7F)begin
                     currentpos <=  (currentpos+7)%8;
                     if(currentpos == 0)begin
                         if(currentline != 0)
                             currentline <= currentline -1;      
                     end
                 end
+                else if(data_in == 7'h0D)begin
+                    if(currentline != 2)begin
+                        currentpos <= 1;
+                        currentline <= currentline +1;
+                    end
+                end
                 else begin
-                    if(currentpos == 7)
+                    if(currentpos == 7)begin
                         if(currentline < 2)begin 
                             currentline <= currentline+1;
                             currentpos <= (currentpos + 1)%8;
                         end
+                     end
                      else currentpos <= currentpos +1;
                 end
-                currentpos<=currentpos+1;
         end
         
         last_ena <= ena;
