@@ -41,26 +41,26 @@ module ascii_test(
                     readAscii[currentpos+8*currentline] = data_in[6:0];
                 end
                 if(data_in == 7'h7F)begin
-                    currentpos <=  (currentpos+7)%8;
+                    currentpos =  (currentpos+7)%8;
                     if(currentpos == 0)begin
                         if(currentline != 0)
-                            currentline <= currentline -1;      
+                            currentline = currentline -1;      
                     end
                 end
                 else if(data_in == 7'h0D)begin
                     if(currentline != 2)begin
-                        currentpos <= 1;
-                        currentline <= currentline +1;
+                        currentpos = 0;
+                        currentline = currentline +1;
                     end
                 end
                 else begin
                     if(currentpos == 7)begin
                         if(currentline < 2)begin 
-                            currentline <= currentline+1;
-                            currentpos <= (currentpos + 1)%8;
+                            currentline = currentline+1;
+                            currentpos = (currentpos + 1)%8;
                         end
                      end
-                     else currentpos <= currentpos +1;
+                     else currentpos = currentpos +1;
                 end
                 readAscii[24] = 7'h30+currentpos;
                 readAscii[25] = 7'h30+currentline;
@@ -162,7 +162,7 @@ module ascii_test(
                 .y(y),                // Y coordinate for character i
                 .displayContents(d[24]),  // Display content for character i
                 .x_desired(10'd80), // Set the desired X coordinate for each text instance
-                .y_desired(10'd280)        // Set the desired Y coordinate for each text instance
+                .y_desired(10'd288)        // Set the desired Y coordinate for each text instance
             );
             textGeneration cl (
                 .clk(clk),
@@ -172,8 +172,8 @@ module ascii_test(
                 .x(x),                // X coordinate for character i
                 .y(y),                // Y coordinate for character i
                 .displayContents(d[25]),  // Display content for character i
-                .x_desired(10'd38), // Set the desired X coordinate for each text instance
-                .y_desired(10'd280)        // Set the desired Y coordinate for each text instance
+                .x_desired(10'd96), // Set the desired X coordinate for each text instance
+                .y_desired(10'd288)        // Set the desired Y coordinate for each text instance
             );
 //         textGeneration c8 (.clk(clk),.reset(reset),.asciiData(a[8]), .ascii_In(counterValue),//Counter outputs ASCII 7'h30 -> 7'39
 //        .x(x),.y(y), .displayContents(d[8]), .x_desired(10'd152), .y_desired(10'd80));          //which is then fed into ascii_In
