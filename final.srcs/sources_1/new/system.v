@@ -88,7 +88,7 @@ module system(
         receivedLog[7:4],    // left
         baudClk);
     
-    ascii_test(clk, btnR, Hsync,Vsync,rgb);
+    ascii_test(clk, btnR, Hsync,Vsync,rgb, en, data_in);
 
     
 

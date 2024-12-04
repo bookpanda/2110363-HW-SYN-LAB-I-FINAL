@@ -23,9 +23,23 @@
 module ascii_test(
 		input wire clk, reset,
 		output wire hsync, vsync,
-		output wire [11:0] rgb
+		output wire [11:0] rgb,
+		input ena,
+		input [7:0] data_in
 	);
-	
+	reg last_ena;
+    reg sending = 0;
+    reg [7:0] count;
+    reg [7:0] temp;
+    
+    always@(posedge clk) begin
+        if ( ~last_ena & ena) begin
+                readAscii[0] = data_in[6:0];
+        end
+        
+        last_ena <= ena;
+     
+    end
 	//VGA/////////////////////////////////////////////////////////////////////////////
 	// video status output from vga_sync to tell when to route out rgb signal to DAC
 	wire video_on;
@@ -87,8 +101,8 @@ module ascii_test(
          textGeneration c7 (.clk(clk),.reset(reset),.asciiData(a[7]), .ascii_In(readAscii[7]),//Char 'F'
         .x(x),.y(y), .displayContents(d[7]), .x_desired(10'd136), .y_desired(10'd80));
         
-         textGeneration c8 (.clk(clk),.reset(reset),.asciiData(a[8]), .ascii_In(counterValue),//Counter outputs ASCII 7'h30 -> 7'39
-        .x(x),.y(y), .displayContents(d[8]), .x_desired(10'd152), .y_desired(10'd80));          //which is then fed into ascii_In
+//         textGeneration c8 (.clk(clk),.reset(reset),.asciiData(a[8]), .ascii_In(counterValue),//Counter outputs ASCII 7'h30 -> 7'39
+//        .x(x),.y(y), .displayContents(d[8]), .x_desired(10'd152), .y_desired(10'd80));          //which is then fed into ascii_In
 
 //Decoder to trigger displayContents signal high or low depending on which ASCII char is reached
     assign displayContents = d[0] ? d[0] :
