@@ -62,8 +62,8 @@ module ascii_test(
                      end
                      else currentpos <= currentpos +1;
                 end
-                readAscii[24] = currentpos;
-                readAscii[25] = currentline;
+                readAscii[24] = 7'h30+currentpos;
+                readAscii[25] = 7'h30+currentline;
         end
         
         last_ena <= ena;
@@ -93,8 +93,8 @@ module ascii_test(
    
     initial begin: rov
         integer i;
-        for (i = 0; i < 24; i = i + 1) begin
-            readAscii[i] = 7'h08;  // Initialize all entries to 0 (7'h00)
+        for (i = 0; i < 26; i = i + 1) begin
+            readAscii[i] = 7'h7F;  // Initialize all entries to 0 (7'h00)
         end
         currentpos = 0;
         currentline = 0;
@@ -156,22 +156,22 @@ module ascii_test(
     textGeneration cp (
                 .clk(clk),
                 .reset(reset),
-                .asciiData(a[23]),        // ASCII data for character i
-                .ascii_In(readAscii[23]), // ASCII input for character i
+                .asciiData(a[24]),        // ASCII data for character i
+                .ascii_In(readAscii[24]), // ASCII input for character i
                 .x(x),                // X coordinate for character i
                 .y(y),                // Y coordinate for character i
-                .displayContents(d[23]),  // Display content for character i
+                .displayContents(d[24]),  // Display content for character i
                 .x_desired(10'd80), // Set the desired X coordinate for each text instance
                 .y_desired(10'd280)        // Set the desired Y coordinate for each text instance
             );
             textGeneration cl (
                 .clk(clk),
                 .reset(reset),
-                .asciiData(a[24]),        // ASCII data for character i
-                .ascii_In(readAscii[24]), // ASCII input for character i
+                .asciiData(a[25]),        // ASCII data for character i
+                .ascii_In(readAscii[25]), // ASCII input for character i
                 .x(x),                // X coordinate for character i
                 .y(y),                // Y coordinate for character i
-                .displayContents(d[24]),  // Display content for character i
+                .displayContents(d[25]),  // Display content for character i
                 .x_desired(10'd38), // Set the desired X coordinate for each text instance
                 .y_desired(10'd280)        // Set the desired Y coordinate for each text instance
             );
@@ -231,7 +231,7 @@ module ascii_test(
                d[22] ? a[22] :
                d[23] ? a[23] :
                d[24] ? a[24] :
-               d[24] ? a[25] : 7'h08; // default to ' '
+               d[24] ? a[25] : 7'h7F; // default to ' '
  //ASCII_ROM////////////////////////////////////////////////////////////       
     //Connections to ascii_rom
     wire [10:0] rom_addr;
