@@ -33,9 +33,13 @@ module ascii_test(
     reg [7:0] temp;
     reg [2:0] currentpos;
     reg [1:0] currentline;
+     reg [6:0] readAscii [25:0];
     always@(posedge clk) begin
         if ( ~last_ena & ena) begin
-                if((!(currentpos==7 &&currentline == 2)||data_in==7'h7F)&& !(data_in==7'h0D))readAscii[currentpos+8*currentline] = data_in[6:0];
+                if((!(currentpos==7 &&currentline == 2)||data_in==7'h7F)&& !(data_in==7'h0D))
+                begin
+                    readAscii[currentpos+8*currentline] = data_in[6:0];
+                end
                 if(data_in == 7'h7F)begin
                     currentpos <=  (currentpos+7)%8;
                     if(currentpos == 0)begin
@@ -58,6 +62,8 @@ module ascii_test(
                      end
                      else currentpos <= currentpos +1;
                 end
+                readAscii[24] = currentpos;
+                readAscii[25] = currentline;
         end
         
         last_ena <= ena;
@@ -79,12 +85,12 @@ module ascii_test(
     
     //READ MEMORY FILE FOR INPUT ASCII ARRAY, CREATE SIGNAL ARRAY                       
     wire [6:0] ascii;  //Signal is concatenated with X coordinate to get a value for the ROM address                 
-    wire [6:0] a[23:0]; //Each index of this array holds a 7-bit ASCII value
-    wire d[23:0]; //Each index of this array holds a signal that says whether the i-th item in array a above should display
+    wire [6:0] a[25:0]; //Each index of this array holds a 7-bit ASCII value
+    wire d[25:0]; //Each index of this array holds a signal that says whether the i-th item in array a above should display
     wire displayContents; //Control signal to determine whether a character should be displayed on the screen
     
     //Read memory file for ascii inputs
-    reg [6:0] readAscii [23:0];
+   
     initial begin: rov
         integer i;
         for (i = 0; i < 24; i = i + 1) begin
@@ -147,7 +153,28 @@ module ascii_test(
             );
         end
     endgenerate
-        
+    textGeneration cp (
+                .clk(clk),
+                .reset(reset),
+                .asciiData(a[23]),        // ASCII data for character i
+                .ascii_In(readAscii[23]), // ASCII input for character i
+                .x(x),                // X coordinate for character i
+                .y(y),                // Y coordinate for character i
+                .displayContents(d[23]),  // Display content for character i
+                .x_desired(10'd80), // Set the desired X coordinate for each text instance
+                .y_desired(10'd280)        // Set the desired Y coordinate for each text instance
+            );
+            textGeneration cl (
+                .clk(clk),
+                .reset(reset),
+                .asciiData(a[24]),        // ASCII data for character i
+                .ascii_In(readAscii[24]), // ASCII input for character i
+                .x(x),                // X coordinate for character i
+                .y(y),                // Y coordinate for character i
+                .displayContents(d[24]),  // Display content for character i
+                .x_desired(10'd38), // Set the desired X coordinate for each text instance
+                .y_desired(10'd280)        // Set the desired Y coordinate for each text instance
+            );
 //         textGeneration c8 (.clk(clk),.reset(reset),.asciiData(a[8]), .ascii_In(counterValue),//Counter outputs ASCII 7'h30 -> 7'39
 //        .x(x),.y(y), .displayContents(d[8]), .x_desired(10'd152), .y_desired(10'd80));          //which is then fed into ascii_In
 
@@ -175,7 +202,9 @@ module ascii_test(
                          d[20] ? d[20] :
                          d[21] ? d[21] :
                          d[22] ? d[22] :
-                         d[23] ? d[23] : 0;
+                         d[23] ? d[23] :
+                         d[24] ? d[24] :
+                         d[25] ? d[25] :0;
 //Decoder to assign correct ASCII value depending on which displayContents signal is used                        
     assign ascii = d[0] ? a[0] :
                d[1] ? a[1] :
@@ -200,7 +229,9 @@ module ascii_test(
                d[20] ? a[20] :
                d[21] ? a[21] :
                d[22] ? a[22] :
-               d[23] ? a[23] : 7'h08; // default to ' '
+               d[23] ? a[23] :
+               d[24] ? a[24] :
+               d[24] ? a[25] : 7'h08; // default to ' '
  //ASCII_ROM////////////////////////////////////////////////////////////       
     //Connections to ascii_rom
     wire [10:0] rom_addr;
