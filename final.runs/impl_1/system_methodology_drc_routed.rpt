@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Fri Dec  6 18:17:35 2024
+| Date         : Sat Dec  7 00:05:15 2024
 | Host         : DESKTOP-S7QFKVR running 64-bit major release  (build 9200)
 | Command      : report_methodology -file system_methodology_drc_routed.rpt -pb system_methodology_drc_routed.pb -rpx system_methodology_drc_routed.rpx
 | Design       : system
@@ -23,15 +23,16 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 115
-+-----------+------------------+--------------------------------+------------+
-| Rule      | Severity         | Description                    | Violations |
-+-----------+------------------+--------------------------------+------------+
-| TIMING-17 | Critical Warning | Non-clocked sequential cell    | 75         |
-| TIMING-18 | Warning          | Missing input or output delay  | 31         |
-| TIMING-20 | Warning          | Non-clocked latch              | 8          |
-| LATCH-1   | Advisory         | Existing latches in the design | 1          |
-+-----------+------------------+--------------------------------+------------+
+             Violations found: 117
++-----------+------------------+----------------------------------+------------+
+| Rule      | Severity         | Description                      | Violations |
++-----------+------------------+----------------------------------+------------+
+| TIMING-17 | Critical Warning | Non-clocked sequential cell      | 76         |
+| HPDR-1    | Warning          | Port pin direction inconsistency | 1          |
+| TIMING-18 | Warning          | Missing input or output delay    | 31         |
+| TIMING-20 | Warning          | Non-clocked latch                | 8          |
+| LATCH-1   | Advisory         | Existing latches in the design   | 1          |
++-----------+------------------+----------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
@@ -307,107 +308,117 @@ Related violations: <none>
 
 TIMING-17#55 Critical Warning
 Non-clocked sequential cell  
-The clock pin sevenSegment/ps_reg[0]/C is not reached by a timing clock
+The clock pin sen_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#56 Critical Warning
 Non-clocked sequential cell  
-The clock pin sevenSegment/ps_reg[1]/C is not reached by a timing clock
+The clock pin sevenSegment/ps_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#57 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/bit_out_reg/C is not reached by a timing clock
+The clock pin sevenSegment/ps_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#58 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/count_reg[0]/C is not reached by a timing clock
+The clock pin tx/bit_out_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#59 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/count_reg[1]/C is not reached by a timing clock
+The clock pin tx/count_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#60 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/count_reg[2]/C is not reached by a timing clock
+The clock pin tx/count_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#61 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/count_reg[3]/C is not reached by a timing clock
+The clock pin tx/count_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#62 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/count_reg[4]/C is not reached by a timing clock
+The clock pin tx/count_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#63 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/count_reg[5]/C is not reached by a timing clock
+The clock pin tx/count_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#64 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/count_reg[6]/C is not reached by a timing clock
+The clock pin tx/count_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#65 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/count_reg[7]/C is not reached by a timing clock
+The clock pin tx/count_reg[6]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#66 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/last_ena_reg/C is not reached by a timing clock
+The clock pin tx/count_reg[7]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#67 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/sending_reg/C is not reached by a timing clock
+The clock pin tx/last_ena_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#68 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/temp_reg[0]/C is not reached by a timing clock
+The clock pin tx/sending_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#69 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/temp_reg[1]/C is not reached by a timing clock
+The clock pin tx/temp_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#70 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/temp_reg[2]/C is not reached by a timing clock
+The clock pin tx/temp_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#71 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/temp_reg[3]/C is not reached by a timing clock
+The clock pin tx/temp_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#72 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/temp_reg[4]/C is not reached by a timing clock
+The clock pin tx/temp_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#73 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/temp_reg[5]/C is not reached by a timing clock
+The clock pin tx/temp_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#74 Critical Warning
 Non-clocked sequential cell  
-The clock pin tx/temp_reg[6]/C is not reached by a timing clock
+The clock pin tx/temp_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#75 Critical Warning
 Non-clocked sequential cell  
+The clock pin tx/temp_reg[6]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#76 Critical Warning
+Non-clocked sequential cell  
 The clock pin tx/temp_reg[7]/C is not reached by a timing clock
+Related violations: <none>
+
+HPDR-1#1 Warning
+Port pin direction inconsistency  
+Hierarchical port(pin) JB[1] direction INOUT is not consistent with the directions of the cell pins/ports found at that level of the netlist hierarchy. Please review the design and consider changing the port(pin) direction. Both drivers and loads were expected for the net (JB[1]) connected to this Port, but both were not found.
 Related violations: <none>
 
 TIMING-18#1 Warning
@@ -567,42 +578,42 @@ Related violations: <none>
 
 TIMING-20#1 Warning
 Non-clocked latch  
-The latch nolabel_line92/rom/data_reg[0] cannot be properly analyzed as its control pin nolabel_line92/rom/data_reg[0]/G is not reached by a timing clock
+The latch nolabel_line97/rom/data_reg[0] cannot be properly analyzed as its control pin nolabel_line97/rom/data_reg[0]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#2 Warning
 Non-clocked latch  
-The latch nolabel_line92/rom/data_reg[1] cannot be properly analyzed as its control pin nolabel_line92/rom/data_reg[1]/G is not reached by a timing clock
+The latch nolabel_line97/rom/data_reg[1] cannot be properly analyzed as its control pin nolabel_line97/rom/data_reg[1]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#3 Warning
 Non-clocked latch  
-The latch nolabel_line92/rom/data_reg[2] cannot be properly analyzed as its control pin nolabel_line92/rom/data_reg[2]/G is not reached by a timing clock
+The latch nolabel_line97/rom/data_reg[2] cannot be properly analyzed as its control pin nolabel_line97/rom/data_reg[2]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#4 Warning
 Non-clocked latch  
-The latch nolabel_line92/rom/data_reg[3] cannot be properly analyzed as its control pin nolabel_line92/rom/data_reg[3]/G is not reached by a timing clock
+The latch nolabel_line97/rom/data_reg[3] cannot be properly analyzed as its control pin nolabel_line97/rom/data_reg[3]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#5 Warning
 Non-clocked latch  
-The latch nolabel_line92/rom/data_reg[4] cannot be properly analyzed as its control pin nolabel_line92/rom/data_reg[4]/G is not reached by a timing clock
+The latch nolabel_line97/rom/data_reg[4] cannot be properly analyzed as its control pin nolabel_line97/rom/data_reg[4]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#6 Warning
 Non-clocked latch  
-The latch nolabel_line92/rom/data_reg[5] cannot be properly analyzed as its control pin nolabel_line92/rom/data_reg[5]/G is not reached by a timing clock
+The latch nolabel_line97/rom/data_reg[5] cannot be properly analyzed as its control pin nolabel_line97/rom/data_reg[5]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#7 Warning
 Non-clocked latch  
-The latch nolabel_line92/rom/data_reg[6] cannot be properly analyzed as its control pin nolabel_line92/rom/data_reg[6]/G is not reached by a timing clock
+The latch nolabel_line97/rom/data_reg[6] cannot be properly analyzed as its control pin nolabel_line97/rom/data_reg[6]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#8 Warning
 Non-clocked latch  
-The latch nolabel_line92/rom/data_reg[7] cannot be properly analyzed as its control pin nolabel_line92/rom/data_reg[7]/G is not reached by a timing clock
+The latch nolabel_line97/rom/data_reg[7] cannot be properly analyzed as its control pin nolabel_line97/rom/data_reg[7]/G is not reached by a timing clock
 Related violations: <none>
 
 LATCH-1#1 Advisory

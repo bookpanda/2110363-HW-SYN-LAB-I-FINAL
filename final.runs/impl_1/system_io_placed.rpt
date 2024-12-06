@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date                      : Fri Dec  6 18:17:01 2024
+| Date                      : Sat Dec  7 00:04:40 2024
 | Host                      : DESKTOP-S7QFKVR running 64-bit major release  (build 9200)
 | Command                   : report_io -file system_io_placed.rpt
 | Design                    : system
@@ -25,7 +25,7 @@ Table of Contents
 +---------------+
 | Total User IO |
 +---------------+
-|            41 |
+|            43 |
 +---------------+
 
 
@@ -48,11 +48,11 @@ Table of Contents
 | A11        |             | Dedicated  | DXP_0                        | Temp Sensor   |             |       0 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | A12        |             | Dedicated  | VP_0                         | XADC          |             |       0 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | A13        |             | Dedicated  | VREFN_0                      | XADC          |             |       0 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
-| A14        |             | High Range | IO_L6P_T0_16                 | User IO       |             |      16 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
+| A14        | JB[0]       | High Range | IO_L6P_T0_16                 | BIDIR         | LVCMOS33    |      16 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | A15        |             | High Range | IO_L6N_T0_VREF_16            | User IO       |             |      16 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
-| A16        |             | High Range | IO_L12P_T1_MRCC_16           | User IO       |             |      16 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
+| A16        | JB[1]       | High Range | IO_L12P_T1_MRCC_16           | BIDIR         | LVCMOS33    |      16 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | A17        |             | High Range | IO_L12N_T1_MRCC_16           | User IO       |             |      16 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
-| A18        | RsTx        | High Range | IO_L19N_T3_VREF_16           | OUTPUT        | LVCMOS33    |      16 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
+| A18        | RsTx        | High Range | IO_L19N_T3_VREF_16           | TRISTATE      | LVCMOS33    |      16 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | A19        |             |            | GND                          | GND           |             |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
 | B1         |             |            | MGTAVTT                      | Gigabit Power |             |         |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | B2         |             |            | MGTPTXP1_216                 | Gigabit       |             |         |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |

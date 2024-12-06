@@ -29,7 +29,8 @@ module system(
     input [7:0] sw,
     input btnC, btnR, btnU,btnL,
     output wire Hsync, Vsync,
-    output wire [11:0] rgb, 
+    output wire [11:0] rgb,
+    inout [1:0] JB, 
     input clk
 );
     wire baudClk;
@@ -37,23 +38,28 @@ module system(
     
     reg [7:0] lastInput, lastTransmit;
     reg updateFromUART = 1; // Flag to allow UART update by default
-    reg last_rec,last_btnC,en;
+    reg last_rec,last_btnC,en,sen;
     // keyboard input
     wire [7:0] keyboardInput;
     wire sent,received;
     reg [7:0] data_in;
     
-    uartRx rx(baudClk, RsRx, received, keyboardInput);
-    uartTx tx(baudClk, data_in, en, sent, RsTx);
+    wire Tx;
+    assign JB[1] = Tx;
+    
+    uartRx rx(baudClk, JB[0], received, keyboardInput);
+    uartTx tx(baudClk, data_in, en, sent, Tx);
     
     always @(posedge baudClk) begin
         if (en) en = 0;
+        if (sen) sen = 0;
         if (~last_rec & received) begin
             data_in = keyboardInput;
-             en = 1;
+            sen = 1;
+            
         end
         if (~last_btnC & btnC)begin
-            data_in = lastInput;
+            data_in = sw;
             en = 1;
         end
         last_rec = received;
@@ -69,11 +75,10 @@ module system(
         end
         // sw button
         else if(btnC) begin
-            lastInput <= sw;
             updateFromUART <= 0;
             lastTransmit <= sw;
         end
-        else if(~last_rec & received) begin
+        else if(received) begin
             lastInput <= keyboardInput;
         end
     end
@@ -89,7 +94,7 @@ module system(
         receivedLog[7:4],    // left
         baudClk);
     
-    vga(clk, btnR, Hsync,Vsync,rgb, en, data_in);
+    vga(clk, btnR, Hsync,Vsync,rgb, sen, data_in);
 
     
 
