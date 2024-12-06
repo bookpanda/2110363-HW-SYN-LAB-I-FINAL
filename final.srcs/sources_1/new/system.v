@@ -78,7 +78,7 @@ module system(
             updateFromUART <= 0;
             lastTransmit <= sw;
         end
-        else if(received) begin
+        else if(~last_rec & received) begin
             lastInput <= keyboardInput;
         end
     end

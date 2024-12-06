@@ -193,3 +193,8 @@
     <Process Command="vivado.bat" Owner="Administrator" Host="DESKTOP-S7QFKVR" Pid="14816" HostCore="8" HostMemory="014899863552">
     </Process>
 </ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Administrator" Host="DESKTOP-S7QFKVR" Pid="2332" HostCore="8" HostMemory="014899863552">
+    </Process>
+</ProcessHandle>
