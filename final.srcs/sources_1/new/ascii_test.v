@@ -36,15 +36,19 @@ module ascii_test(
      reg [6:0] readAscii [25:0];
     always@(posedge clk) begin
         if ( ~last_ena & ena) begin
-                if((!(currentpos==7 &&currentline == 2)||data_in==7'h7F)&& !(data_in==7'h0D))
+                if(!(currentpos==7 &&currentline == 2)&& !(data_in==7'h0D))
                 begin
                     readAscii[currentpos+8*currentline] = data_in[6:0];
                 end
                 if(data_in == 7'h7F)begin
-                    currentpos =  (currentpos+7)%8;
-                    if(currentpos == 0)begin
-                        if(currentline != 0)
-                            currentline = currentline -1;      
+                    if(currentpos > 0) begin
+                        currentpos = currentpos - 1;
+                        readAscii[currentpos+8*currentline] = data_in[6:0];
+                    end
+                    else if(currentline > 0) begin
+                        currentline = currentline - 1;
+                        currentpos = 7; 
+                        readAscii[currentpos+8*currentline] = data_in[6:0];
                     end
                 end
                 else if(data_in == 7'h0D)begin
@@ -116,8 +120,8 @@ module ascii_test(
                 .x(x),                // X coordinate for character i
                 .y(y),                // Y coordinate for character i
                 .displayContents(d[i]),  // Display content for character i
-                .x_desired(10'd80 + i*8), // Set the desired X coordinate for each text instance
-                .y_desired(10'd80)        // Set the desired Y coordinate for each text instance
+                .x_desired(10'd288 + i*8), // Set the desired X coordinate for each text instance
+                .y_desired(10'd208)        // Set the desired Y coordinate for each text instance
             );
         end
     endgenerate
@@ -132,8 +136,8 @@ module ascii_test(
                 .x(x),                // X coordinate for character i
                 .y(y),                // Y coordinate for character i
                 .displayContents(d[j+8]),  // Display content for character i
-                .x_desired(10'd80 + j*8), // Set the desired X coordinate for each text instance
-                .y_desired(10'd96)        // Set the desired Y coordinate for each text instance
+                .x_desired(10'd288 + j*8), // Set the desired X coordinate for each text instance
+                .y_desired(10'd224)        // Set the desired Y coordinate for each text instance
             );
         end
     endgenerate
@@ -148,8 +152,8 @@ module ascii_test(
                 .x(x),                // X coordinate for character i
                 .y(y),                // Y coordinate for character i
                 .displayContents(d[k+16]),  // Display content for character i
-                .x_desired(10'd80 + k*8), // Set the desired X coordinate for each text instance
-                .y_desired(10'd112)        // Set the desired Y coordinate for each text instance
+                .x_desired(10'd288 + k*8), // Set the desired X coordinate for each text instance
+                .y_desired(10'd240)        // Set the desired Y coordinate for each text instance
             );
         end
     endgenerate
@@ -162,19 +166,19 @@ module ascii_test(
                 .y(y),                // Y coordinate for character i
                 .displayContents(d[24]),  // Display content for character i
                 .x_desired(10'd80), // Set the desired X coordinate for each text instance
-                .y_desired(10'd288)        // Set the desired Y coordinate for each text instance
-            );
-            textGeneration cl (
-                .clk(clk),
-                .reset(reset),
-                .asciiData(a[25]),        // ASCII data for character i
-                .ascii_In(readAscii[25]), // ASCII input for character i
-                .x(x),                // X coordinate for character i
-                .y(y),                // Y coordinate for character i
-                .displayContents(d[25]),  // Display content for character i
-                .x_desired(10'd96), // Set the desired X coordinate for each text instance
-                .y_desired(10'd288)        // Set the desired Y coordinate for each text instance
-            );
+                .y_desired(10'd320)        // Set the desired Y coordinate for each text instance
+    );
+    textGeneration cl (
+        .clk(clk),
+        .reset(reset),
+        .asciiData(a[25]),        // ASCII data for character i
+        .ascii_In(readAscii[25]), // ASCII input for character i
+        .x(x),                // X coordinate for character i
+        .y(y),                // Y coordinate for character i
+        .displayContents(d[25]),  // Display content for character i
+        .x_desired(10'd96), // Set the desired X coordinate for each text instance
+        .y_desired(10'd320)        // Set the desired Y coordinate for each text instance
+    );
 //         textGeneration c8 (.clk(clk),.reset(reset),.asciiData(a[8]), .ascii_In(counterValue),//Counter outputs ASCII 7'h30 -> 7'39
 //        .x(x),.y(y), .displayContents(d[8]), .x_desired(10'd152), .y_desired(10'd80));          //which is then fed into ascii_In
 
@@ -231,7 +235,7 @@ module ascii_test(
                d[22] ? a[22] :
                d[23] ? a[23] :
                d[24] ? a[24] :
-               d[24] ? a[25] : 7'h7F; // default to ' '
+               d[25] ? a[25] : 7'h7F; // default to ' '
  //ASCII_ROM////////////////////////////////////////////////////////////       
     //Connections to ascii_rom
     wire [10:0] rom_addr;
@@ -260,6 +264,6 @@ module ascii_test(
         //rom_bit is off display blue
     //Video_off display black
             
-    assign rgb = video_on ? (rom_bit ? ((displayContents) ? 12'hFFF: 12'h8): 12'h8) : 12'b0; //blue background white text
+    assign rgb = video_on ? (rom_bit ? ((displayContents) ? 12'hCCC: 12'h333): 12'h333) : 12'b0; //blue background white text
 endmodule
 
