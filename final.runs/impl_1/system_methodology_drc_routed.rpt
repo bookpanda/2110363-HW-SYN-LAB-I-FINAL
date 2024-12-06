@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Fri Dec  6 15:49:40 2024
+| Date         : Fri Dec  6 16:24:53 2024
 | Host         : DESKTOP-S7QFKVR running 64-bit major release  (build 9200)
 | Command      : report_methodology -file system_methodology_drc_routed.rpt -pb system_methodology_drc_routed.pb -rpx system_methodology_drc_routed.rpx
 | Design       : system
@@ -23,13 +23,13 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 114
+             Violations found: 115
 +-----------+------------------+--------------------------------+------------+
 | Rule      | Severity         | Description                    | Violations |
 +-----------+------------------+--------------------------------+------------+
 | TIMING-17 | Critical Warning | Non-clocked sequential cell    | 75         |
 | TIMING-18 | Warning          | Missing input or output delay  | 31         |
-| TIMING-20 | Warning          | Non-clocked latch              | 7          |
+| TIMING-20 | Warning          | Non-clocked latch              | 8          |
 | LATCH-1   | Advisory         | Existing latches in the design | 1          |
 +-----------+------------------+--------------------------------+------------+
 
@@ -567,42 +567,47 @@ Related violations: <none>
 
 TIMING-20#1 Warning
 Non-clocked latch  
-The latch nolabel_line91/rom1/data_reg[1] cannot be properly analyzed as its control pin nolabel_line91/rom1/data_reg[1]/G is not reached by a timing clock
+The latch nolabel_line91/rom1/data_reg[0] cannot be properly analyzed as its control pin nolabel_line91/rom1/data_reg[0]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#2 Warning
 Non-clocked latch  
-The latch nolabel_line91/rom1/data_reg[2] cannot be properly analyzed as its control pin nolabel_line91/rom1/data_reg[2]/G is not reached by a timing clock
+The latch nolabel_line91/rom1/data_reg[1] cannot be properly analyzed as its control pin nolabel_line91/rom1/data_reg[1]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#3 Warning
 Non-clocked latch  
-The latch nolabel_line91/rom1/data_reg[3] cannot be properly analyzed as its control pin nolabel_line91/rom1/data_reg[3]/G is not reached by a timing clock
+The latch nolabel_line91/rom1/data_reg[2] cannot be properly analyzed as its control pin nolabel_line91/rom1/data_reg[2]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#4 Warning
 Non-clocked latch  
-The latch nolabel_line91/rom1/data_reg[4] cannot be properly analyzed as its control pin nolabel_line91/rom1/data_reg[4]/G is not reached by a timing clock
+The latch nolabel_line91/rom1/data_reg[3] cannot be properly analyzed as its control pin nolabel_line91/rom1/data_reg[3]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#5 Warning
 Non-clocked latch  
-The latch nolabel_line91/rom1/data_reg[5] cannot be properly analyzed as its control pin nolabel_line91/rom1/data_reg[5]/G is not reached by a timing clock
+The latch nolabel_line91/rom1/data_reg[4] cannot be properly analyzed as its control pin nolabel_line91/rom1/data_reg[4]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#6 Warning
 Non-clocked latch  
-The latch nolabel_line91/rom1/data_reg[6] cannot be properly analyzed as its control pin nolabel_line91/rom1/data_reg[6]/G is not reached by a timing clock
+The latch nolabel_line91/rom1/data_reg[5] cannot be properly analyzed as its control pin nolabel_line91/rom1/data_reg[5]/G is not reached by a timing clock
 Related violations: <none>
 
 TIMING-20#7 Warning
+Non-clocked latch  
+The latch nolabel_line91/rom1/data_reg[6] cannot be properly analyzed as its control pin nolabel_line91/rom1/data_reg[6]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#8 Warning
 Non-clocked latch  
 The latch nolabel_line91/rom1/data_reg[7] cannot be properly analyzed as its control pin nolabel_line91/rom1/data_reg[7]/G is not reached by a timing clock
 Related violations: <none>
 
 LATCH-1#1 Advisory
 Existing latches in the design  
-There are 7 latches found in the design. Inferred latches are often the result of HDL coding mistakes, such as incomplete if or case statements.
+There are 8 latches found in the design. Inferred latches are often the result of HDL coding mistakes, such as incomplete if or case statements.
 Related violations: <none>
 
 

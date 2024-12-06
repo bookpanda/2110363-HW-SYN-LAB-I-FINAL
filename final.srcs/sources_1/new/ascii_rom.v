@@ -36,6 +36,23 @@ module ascii_rom(clk, rom_addr, data);
         //Topmost 7 bits of rom_addr is the ascii value, bottom 4 bits is counting the 16 rows
         always @*
         case(rom_addr_next)
+        // code x00 ( )
+			11'h000: data = 8'b00000000;	//
+			11'h001: data = 8'b00000000;	//
+			11'h002: data = 8'b00000000;	//   
+			11'h003: data = 8'b00000000;	//  
+			11'h004: data = 8'b00000000;	//   
+			11'h005: data = 8'b00000000;	//
+			11'h006: data = 8'b01101100;	//
+			11'h007: data = 8'b10010010;	//
+			11'h008: data = 8'b10000010;	//
+			11'h009: data = 8'b01000100;	//
+			11'h00a: data = 8'b00101000;	//  
+			11'h00b: data = 8'b00010000;	//  
+			11'h00c: data = 8'b00000000;	//
+			11'h00d: data = 8'b00000000;	//
+			11'h00e: data = 8'b00000000;	//
+			11'h00f: data = 8'b00000000;	//
          // code x7F ( )
 			11'h7F0: data = 8'b00000000;	//
 			11'h7F1: data = 8'b00000000;	//
