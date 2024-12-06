@@ -35,6 +35,36 @@ module vga(
     reg [1:0] currentline;
      reg [6:0] readAscii [25:0];
     always@(posedge clk) begin
+        if (reset)begin
+            currentline = 0;
+            currentpos = 0;
+            readAscii[0] <= 7'h7F;
+            readAscii[1] <= 7'h7F;
+            readAscii[2] <= 7'h7F;
+            readAscii[3] <= 7'h7F;
+            readAscii[4] <= 7'h7F;
+            readAscii[5] <= 7'h7F;
+            readAscii[6] <= 7'h7F;
+            readAscii[7] <= 7'h7F;
+            readAscii[8] <= 7'h7F;
+            readAscii[9] <= 7'h7F;
+            readAscii[10] <= 7'h7F;
+            readAscii[11] <= 7'h7F;
+            readAscii[12] <= 7'h7F;
+            readAscii[13] <= 7'h7F;
+            readAscii[14] <= 7'h7F;
+            readAscii[15] <= 7'h7F;
+            readAscii[16] <= 7'h7F;
+            readAscii[17] <= 7'h7F;
+            readAscii[18] <= 7'h7F;
+            readAscii[19] <= 7'h7F;
+            readAscii[20] <= 7'h7F;
+            readAscii[21] <= 7'h7F;
+            readAscii[22] <= 7'h7F;
+            readAscii[23] <= 7'h7F;
+            readAscii[24] <= 7'h7F;
+            readAscii[25] <= 7'h7F;
+        end
         if ( ~last_ena & ena) begin
                 if(!(currentpos==7 &&currentline == 2)&& !(data_in==7'h0D))
                 begin
@@ -225,7 +255,7 @@ module vga(
     wire [2:0] rom_col;
     wire [7:0] rom_data;
     wire rom_bit;
-    ascii_rom rom.clk(clk), .rom_addr(rom_addr), .data(rom_data));
+    ascii_rom rom(.clk(clk), .rom_addr(rom_addr), .data(rom_data));
 
     assign rom_row = y[3:0];
     assign rom_addr = {ascii, rom_row};

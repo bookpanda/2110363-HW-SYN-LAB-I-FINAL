@@ -75,13 +75,13 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
   C:/Users/Administrator/Desktop/2110363-HW-SYN-LAB-I-FINAL/final.srcs/sources_1/new/ascii_rom.v
-  C:/Users/Administrator/Desktop/2110363-HW-SYN-LAB-I-FINAL/final.srcs/sources_1/new/ascii_test.v
   C:/Users/Administrator/Desktop/2110363-HW-SYN-LAB-I-FINAL/final.srcs/sources_1/new/baudRate.v
+  C:/Users/Administrator/Desktop/2110363-HW-SYN-LAB-I-FINAL/final.srcs/sources_1/new/char_container.v
   C:/Users/Administrator/Desktop/2110363-HW-SYN-LAB-I-FINAL/final.srcs/sources_1/new/hexTo7Segment.v
   C:/Users/Administrator/Desktop/2110363-HW-SYN-LAB-I-FINAL/final.srcs/sources_1/new/quadSevenSeg.v
-  C:/Users/Administrator/Desktop/2110363-HW-SYN-LAB-I-FINAL/final.srcs/sources_1/new/text_Generation.v
   C:/Users/Administrator/Desktop/2110363-HW-SYN-LAB-I-FINAL/final.srcs/sources_1/new/uartRx.v
   C:/Users/Administrator/Desktop/2110363-HW-SYN-LAB-I-FINAL/final.srcs/sources_1/new/uartTx.v
+  C:/Users/Administrator/Desktop/2110363-HW-SYN-LAB-I-FINAL/final.srcs/sources_1/new/vga.v
   C:/Users/Administrator/Desktop/2110363-HW-SYN-LAB-I-FINAL/final.srcs/sources_1/new/vga_sync.v
   C:/Users/Administrator/Desktop/2110363-HW-SYN-LAB-I-FINAL/final.srcs/sources_1/new/system.v
 }

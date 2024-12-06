@@ -35,7 +35,7 @@ module system(
     wire baudClk;
     baudRate baudRateInst(baudClk, clk);
     
-    reg [7:0] lastInput;
+    reg [7:0] lastInput, lastTransmit;
     reg updateFromUART = 1; // Flag to allow UART update by default
     reg last_rec,last_btnC,en;
     // keyboard input
@@ -71,8 +71,9 @@ module system(
         else if(btnC) begin
             lastInput <= sw;
             updateFromUART <= 0;
+            lastTransmit <= sw;
         end
-        else if(received && updateFromUART) begin
+        else if(~last_rec & received) begin
             lastInput <= keyboardInput;
         end
     end
@@ -80,7 +81,7 @@ module system(
     wire [7:0] receivedLog;
     wire [7:0] transmittedLog;
     assign receivedLog = lastInput;
-    
+    assign transmittedLog = lastTransmit;
     quadSevenSeg sevenSegment(seg, dp, an[0], an[1], an[2], an[3], 
         transmittedLog[3:0], // right
         transmittedLog[7:4], 
